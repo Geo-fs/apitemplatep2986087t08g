@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: Feed Fetch API
+  version: "1.0"
+servers:
+  - url: https://apitemplatep2986087t08g.brettconners39.workers.dev
+paths:
+  /rss:
+    get:
+      operationId: fetchFeed
+      summary: Fetch and parse an RSS, Atom, or JSON feed
+      parameters:
+        - name: url
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uri
+      responses:
+        "200":
+          description: Parsed feed data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  source:
+                    type: string
+                  type:
+                    type: string
+                  feedTitle:
+                    type: string
+                  feedLink:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        link:
+                          type: string
+                        pubDate:
+                          type: string
+                        summary:
+                          type: string
